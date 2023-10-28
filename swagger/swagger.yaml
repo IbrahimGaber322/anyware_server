@@ -1,0 +1,382 @@
+openapi: 3.0.0
+info:
+  title: anyware_coligo_db
+  version: 1.0.0
+servers:
+  - url: http://{{domain}}{{channel}}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags:
+  - name: auth
+  - name: announcement
+  - name: due
+paths:
+  /auth/signup:
+    post:
+      tags:
+        - auth
+      summary: signup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Ibrahim
+                userName: '@Ibrahim'
+                password: Password-123
+                cPassword: Password-123
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/login:
+    post:
+      tags:
+        - auth
+      summary: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                userName: '@Ibrahim'
+                password: Password-123
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/logout:
+    post:
+      tags:
+        - auth
+      summary: logout
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: authorization
+          in: header
+          schema:
+            type: string
+          example: '{{tokenPassword}} {{token}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /announcement/add:
+    post:
+      tags:
+        - announcement
+      summary: addAnnouncement
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: hello world
+                desc: >-
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Dolorem
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: authorization
+          in: header
+          schema:
+            type: string
+          example: '{{tokenPassword}} {{token}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /announcement/{id}:
+    get:
+      tags:
+        - announcement
+      summary: getAnnouncementById
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: authorization
+          in: header
+          schema:
+            type: string
+          example: '{{tokenPassword}} {{token}}'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 63cacf1c13ef8d8f038b1260
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /announcement/:
+    get:
+      tags:
+        - announcement
+      summary: getAllAnnouncements
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: authorization
+          in: header
+          schema:
+            type: string
+          example: '{{tokenPassword}} {{token}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /announcement/{id}/update:
+    patch:
+      tags:
+        - announcement
+      summary: updateAnnouncementById
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                topic: hello world 2222222222222
+                desc: announcementannouncementannouncementannouncement
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: authorization
+          in: header
+          schema:
+            type: string
+          example: '{{tokenPassword}} {{token}}'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 63cacf1c13ef8d8f038b1260
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /announcement/{id}/soft-delete:
+    patch:
+      tags:
+        - announcement
+      summary: softDeleteAnnouncementById
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: authorization
+          in: header
+          schema:
+            type: string
+          example: '{{tokenPassword}} {{token}}'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 63cacf1c13ef8d8f038b1260
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /announcement/{id}/delete:
+    delete:
+      tags:
+        - announcement
+      summary: deleteAnnouncementById
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: authorization
+          in: header
+          schema:
+            type: string
+          example: '{{tokenPassword}} {{token}}'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 63cacf1c13ef8d8f038b1260
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /due/add:
+    post:
+      tags:
+        - due
+      summary: addDue
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                dueType: quiz
+                dueName: unit 2 quiz
+                courseName: physics 02
+                dueTopic: unit 2 motion and forces
+                dueDate: 20 Dec 2017 - 9:00 PM
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: authorization
+          in: header
+          schema:
+            type: string
+          example: '{{tokenPassword}} {{token}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /due/{id}:
+    get:
+      tags:
+        - due
+      summary: getDueById
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: authorization
+          in: header
+          schema:
+            type: string
+          example: '{{tokenPassword}} {{token}}'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 63cb0ea72e7ba26bf5b1ab8a
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /due/:
+    get:
+      tags:
+        - due
+      summary: getAllDues
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: authorization
+          in: header
+          schema:
+            type: string
+          example: '{{tokenPassword}} {{token}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /due/{id}/update:
+    patch:
+      tags:
+        - due
+      summary: updateDueById
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                dueType: quiz
+                dueName: unit 2 quiz
+                courseName: physics 02
+                dueTopic: unit 2 motion and forces
+                dueDate: 20 Dec 2017 - 9:00 PM
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: authorization
+          in: header
+          schema:
+            type: string
+          example: '{{tokenPassword}} {{token}}'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 63cb0ea72e7ba26bf5b1ab8a
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /due/{id}/soft-delete:
+    patch:
+      tags:
+        - due
+      summary: softDeleteDueById
+      requestBody:
+        content: {}
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: authorization
+          in: header
+          schema:
+            type: string
+          example: '{{tokenPassword}} {{token}}'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 63cb0f532e7ba26bf5b1ab98
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /due/{id}/delete:
+    delete:
+      tags:
+        - due
+      summary: deleteDueById
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: authorization
+          in: header
+          schema:
+            type: string
+          example: '{{tokenPassword}} {{token}}'
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          example: 63cb0f532e7ba26bf5b1ab98
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
