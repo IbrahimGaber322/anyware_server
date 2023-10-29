@@ -7,7 +7,7 @@ import cors from 'cors';
 function runningCors(app) {
   // Define CORS options
   const corsOptions = {
-    origin: ['http://localhost:3000'], // Allow requests from specified origin (e.g., a front-end web app)
+    origin: ['http://localhost:3000', process.env.FRONT_URL], // Allow requests from specified origin (e.g., a front-end web app)
     optionsSuccessStatus: 200, // For legacy browser support: sets the status code for preflight OPTIONS request
   };
 
