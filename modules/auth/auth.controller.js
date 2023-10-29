@@ -1,4 +1,3 @@
-import "../../get_env.js"; // Load environment variables
 import userModel from "../../DB/model/user.model.js"; // Import the user model
 import { default as jwt } from "jsonwebtoken"; // JWT for token generation
 import { default as bcryptjs } from "bcryptjs"; // bcrypt for password hashing

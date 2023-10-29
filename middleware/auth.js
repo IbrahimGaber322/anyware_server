@@ -1,3 +1,5 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
 import { default as jwt } from "jsonwebtoken"; // JSON Web Token library
 import userModel from "../DB/model/user.model.js"; // User model for database interaction
 import internalServerError from "../utils/internal_server_error.js"; // Function to handle internal server errors
